@@ -183,6 +183,8 @@ h3 { margin: 13px 0 8px; font-family: var(--display); font-size: 22px; letter-sp
 .theme-blueberry .template-berry { background: #416fba; color: #e8f0fc; box-shadow: inset -12px -10px 0 #2d508c; }
 .theme-blueberry .template-monthly, .theme-blueberry .template-heatmap { background: linear-gradient(120deg, #dce8fb, #ebf2ff); }
 .theme-blueberry .template-daily, .theme-blueberry .template-faq { background: #e6effc; }
+.theme-blueberry .blueberry-stat { border-color: #c7d7f0; background: #e9f1ff; }
+.theme-blueberry .blueberry-faq details { border-color: #c7d7f0; background: #e9f1ff; }
 .theme-michelle .detail-art-michelle { background: #302125; }
 .theme-michelle .detail-stamp { border-color: #9b454c; }
 .theme-michelle .sheet-link { color: #ff7b82; }
@@ -270,7 +272,10 @@ h3 { margin: 13px 0 8px; font-family: var(--display); font-size: 22px; letter-sp
 .blueberry-section-heading { max-width: 700px; margin-bottom: 24px; }
 .blueberry-section-heading .detail-kicker { margin-bottom: 10px; }
 .blueberry-section-heading h2 { margin: 0 0 11px; font-family: var(--display); font-size: 30px; font-weight: 600; letter-spacing: -.5px; }
-.blueberry-section-heading > p:last-child:not(.detail-kicker) { max-width: 620px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
+.blueberry-section-heading > p:not(.detail-kicker) { max-width: 620px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
+.blueberry-section-heading .blueberry-repo-link { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.blueberry-section-heading .blueberry-repo-link:hover { color: #254c86; }
+.blueberry-section-heading .blueberry-repo-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .blueberry-overview { max-width: 720px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; color: #356a73; font-size: 13px; line-height: 1.8; }
 .blueberry-overview p { margin: 0; }
 .blueberry-timeline { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; max-width: 720px; margin-top: 26px; }
@@ -284,13 +289,13 @@ h3 { margin: 13px 0 8px; font-family: var(--display); font-size: 22px; letter-sp
 .rule-card ul { margin: 8px 0 0; padding-left: 17px; }
 .rule-card li + li { margin-top: 4px; }
 .rule-counted { background: #d8f6f2; border-color: #78cfd0; }
-.rule-info { margin-top: 12px; }
-.rule-info > summary { width: fit-content; padding: 6px 9px; display: inline-flex; align-items: center; gap: 6px; border: 1px solid #78cfd0; border-radius: 99px; background: #fff; color: #087e91; cursor: pointer; font-size: 11px; font-weight: 700; list-style: none; }
-.rule-info > summary::-webkit-details-marker { display: none; }
-.rule-info > summary:hover, .rule-info[open] > summary { background: #c8f3ef; }
-.rule-info > summary:focus-visible { outline: 2px solid #087e91; outline-offset: 2px; }
-.rule-info > summary span { width: 16px; height: 16px; display: grid; place-items: center; border: 1px solid currentColor; border-radius: 50%; font-family: var(--mono); font-size: 10px; }
-.rule-info > p { margin: 10px 0 0; color: rgba(0, 0, 0, 0.5); }
+.blueberry-info { position: relative; width: fit-content; }
+.rule-card li > .blueberry-info { display: inline-block; margin-left: 6px; vertical-align: middle; }
+.blueberry-info > summary { width: 20px; height: 20px; display: grid; place-items: center; border: 1px solid var(--accent); border-radius: 50%; color: var(--accent); cursor: pointer; font: 700 11px/1 var(--mono); list-style: none; }
+.blueberry-info > summary::-webkit-details-marker { display: none; }
+.blueberry-info > summary:hover, .blueberry-info[open] > summary { background: #dce8fb; }
+.blueberry-info > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.blueberry-info > p { position: absolute; z-index: 2; top: calc(100% + 8px); left: 0; width: 200px; max-width: calc(100vw - 48px); margin: 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: 7px; background: var(--paper); box-shadow: 0 5px 14px #203b5f22; color: var(--muted); font-size: 11px; font-weight: 400; line-height: 1.5; }
 .visual-template { min-height: 195px; max-width: 840px; margin: 0; padding: 24px 30px; display: flex; align-items: center; gap: 25px; overflow: hidden; border: 1px dashed #6ebfc3; border-radius: 11px; background: linear-gradient(120deg, #d5f5f1, #bfeff0); }
 .template-berry { width: 105px; height: 105px; flex: 0 0 105px; display: grid; place-items: center; border-radius: 48% 52% 47% 53%; background: #087e91; color: #c8f3ef; font-size: 76px; line-height: 1; box-shadow: inset -12px -10px 0 #075b6c; }
 .visual-template figcaption { display: grid; gap: 9px; }
@@ -301,8 +306,30 @@ h3 { margin: 13px 0 8px; font-family: var(--display); font-size: 22px; letter-sp
 .template-heatmap { background: linear-gradient(120deg, #c8f3ef, #d8f6d0); }
 .template-faq { min-height: 150px; background: #d8f6f2; }
 .template-faq .template-berry { width: 78px; height: 78px; flex-basis: 78px; font-size: 42px; }
-.blueberry-heatmap { max-width: 840px; margin: 0; overflow: hidden; border-radius: 11px; }
-.blueberry-heatmap img { display: block; width: 100%; height: auto; }
+.blueberry-stat-grid { max-width: 840px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.blueberry-stat { min-height: 135px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; border: 1px solid var(--line); border-radius: 9px; background: #fff; }
+.blueberry-stat-label { color: var(--accent); font-family: var(--mono); font-size: 9px; letter-spacing: .7px; }
+.blueberry-stat strong { font-family: var(--display); font-size: 27px; letter-spacing: -.5px; }
+.blueberry-stat-value { display: flex; align-items: center; gap: 9px; }
+.blueberry-stat > span:last-child { color: var(--muted); font-size: 11px; }
+.blueberry-chart { max-width: 840px; margin: 0; }
+.blueberry-chart-visual { position: relative; }
+.blueberry-chart-link { display: block; overflow: hidden; border: 1px solid var(--line); border-radius: 11px; background: #fff; cursor: zoom-in; }
+.blueberry-chart-link:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.blueberry-chart-link img { display: block; width: 100%; height: auto; }
+.blueberry-chart-info { position: absolute; z-index: 2; top: var(--hotspot-y, 13.3%); left: var(--hotspot-x, 24.4%); transform: translate(-50%, -50%); }
+.blueberry-chart-info > summary { background: var(--paper); box-shadow: 0 1px 5px #203b5f33; }
+.blueberry-chart figcaption { padding: 9px 2px 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+.blueberry-chart figcaption span { color: var(--accent); }
+.blueberry-faq { max-width: 840px; display: grid; gap: 10px; }
+.blueberry-faq details { padding: 0; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.blueberry-faq summary { display: block; padding: 16px 18px; color: var(--ink); cursor: pointer; font-family: var(--display); font-size: 16px; font-weight: 700; }
+.blueberry-faq summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; border-radius: 7px; }
+.blueberry-faq details p { margin: 0; padding: 0 18px 12px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.blueberry-faq details p + p { padding-top: 8px; }
+.blueberry-faq details p:last-child { padding-bottom: 16px; }
+.blueberry-faq details ul { margin: 0 18px 16px; padding: 0; display: grid; gap: 8px; list-style: none; }
+.blueberry-faq details li { padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--muted); font-size: 12px; line-height: 1.6; }
 .blueberry-signoff { padding: 48px 0 55px; color: #087e91; font-family: var(--display); font-size: 24px; font-style: italic; text-align: center; }
 
 @media (max-width: 900px) {
@@ -353,6 +380,9 @@ h3 { margin: 13px 0 8px; font-family: var(--display); font-size: 22px; letter-sp
   .blueberry-section { padding: 37px 0 40px; }
   .blueberry-section-heading h2 { font-size: 26px; }
   .blueberry-overview, .blueberry-timeline, .rules-grid { grid-template-columns: 1fr; gap: 12px; }
+  .blueberry-stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .blueberry-stat { min-height: 120px; padding: 14px; }
+  .blueberry-stat strong { font-size: 23px; }
   .visual-template { min-height: 160px; padding: 20px; gap: 15px; }
   .template-berry { width: 76px; height: 76px; flex-basis: 76px; font-size: 54px; }
   .template-title { font-size: 17px; }

@@ -138,7 +138,7 @@ function makeMovieCell(movie, column, descriptionId) {
         ? number.toLocaleString(undefined, { maximumFractionDigits: 3 })
         : value;
     } else {
-      cell.textContent = column === "Genres" ? value.replace(/\|/g, " · ") : value || "—";
+      cell.textContent = column === "Genres" ? value.replace(/\|/g, " · ") : value || "-";
     }
   }
 
